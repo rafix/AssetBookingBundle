@@ -6,18 +6,17 @@ namespace Application\AssetBookingBundle\Entity;
 class Booking
 {
     protected $id;
-    protected $bookingReference;
-    protected $groupInfoNumberOfAdults;
-    protected $groupInfoNumberOfChildren;
 
-    protected $consumptionElectricity;
-    protected $consumptionGas;
-    protected $consumptionFuel;
-    protected $consumptionWater;
-    
-    protected $stateOfPropertyRemarks;
+    protected $bookingReference;
+
+    protected $customer;
+   
     protected $bookingRemarks;
+    protected $items;
 
     protected $status;
+
+    protected $createdAt;
+    protected $updatedAt;
 
 }

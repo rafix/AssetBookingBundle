@@ -11,18 +11,20 @@
         <field name="bookingReference" column="name" type="string" length="50" />
         <field name="bookingRemarks" column="remarks" type="text" />
 
-        <field name="groupInfoNumberOfAdults" column="group_info_number_of_adults" type="integer" />
-        <field name="groupInfoNumberOfChildren" column="group_info_number_of_children" type="integer" />
+         <one-to-one field="customer" target-entity="Customer" inversed-by="customer">
+            <join-column name="customer_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
+        </one-to-one>
+        <one-to-many field="items" target-entity="BookingItem" mapped-by="booking">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
 
-
-        <field name="consumptionElectricity" column="consumption_electricity" type="float" />
-        <field name="consumptionFuel" column="consumption_fuel" type="float" />
-        <field name="consumptionGas" column="consumption_gas" type="float" />
-        <field name="consumptionWater" column="consumption_water" type="float" />
-
-        <field name="stateOfPropertyRemarks" column="state_of_property_remarks" type="text" />
         <field name="status" column="status" type="string" />
 
+
+        <field name="createdAt" column="created_at" type="datetime" />
+        <field name="updatedAt" column="updated_at" type="datetime" />
 
     </entity>
 
