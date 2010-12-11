@@ -1,7 +1,7 @@
 <?php
 
 namespace Application\AssetBookingBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 class StatusProfile
 {
@@ -13,5 +13,10 @@ class StatusProfile
     protected $items;
     protected $createdAt;
     protected $updatedAt;
+
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
 }

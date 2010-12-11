@@ -1,7 +1,7 @@
 <?php
 
 namespace Application\AssetBookingBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Booking
 {
@@ -19,4 +19,8 @@ class Booking
     protected $createdAt;
     protected $updatedAt;
 
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 }

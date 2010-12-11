@@ -12,4 +12,7 @@ class StatusProfileItem
     protected $createdAt;
     protected $updatedAt;
 
+    public function setStatus(Application\AssetBookingBundle\Entity\Status $status){
+        $this->status = $status;
+    }
 }
