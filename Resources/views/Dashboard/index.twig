@@ -1,0 +1,23 @@
+{% extends "MainBundle::layout.twig" %}
+
+{% block content %}
+
+
+<link type="text/css" rel="stylesheet" href="/css/web2cal.css">
+<script src="/js/jquery-1.4.4.min.js"></script> 
+<script src="/js/web2cal-min.js"></script> (Main Library to provide calendar functions.)
+<script src="/js/web2cal.default.template.js"></script> (Contains default templates) 
+<script src="/js/web2cal.support.js"></script> (Contains Language, and Support functions)  
+
+    Hello {{ name }}!
+	
+<div id="calendarContainer">
+</div>
+<script type="javascript">
+var ical = new Web2Cal( 'calendarContainer', { 
+loadEvents:loadCalendarEvents,
+onUpdateEvent: function(ev){alert(ev.eventId + " is Updated ");},
+start: 5
+});
+</script>
+{% endblock %}

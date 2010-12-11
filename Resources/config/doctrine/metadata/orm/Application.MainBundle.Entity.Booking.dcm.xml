@@ -1,0 +1,30 @@
+<!-- Application/HelloBundle/Resources/config/doctrine/metadata/orm/Application.HelloBundle.Entity.User.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Application\AssetBookingBundle\Entity\Booking" table="booking">
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="bookingReference" column="name" type="string" length="50" />
+        <field name="bookingRemarks" column="remarks" type="text" />
+
+        <field name="groupInfoNumberOfAdults" column="group_info_number_of_adults" type="integer" />
+        <field name="groupInfoNumberOfChildren" column="group_info_number_of_children" type="integer" />
+
+
+        <field name="consumptionElectricity" column="consumption_electricity" type="float" />
+        <field name="consumptionFuel" column="consumption_fuel" type="float" />
+        <field name="consumptionGas" column="consumption_gas" type="float" />
+        <field name="consumptionWater" column="consumption_water" type="float" />
+
+        <field name="stateOfPropertyRemarks" column="state_of_property_remarks" type="text" />
+        <field name="status" column="status" type="string" />
+
+
+    </entity>
+
+
+</doctrine-mapping>
