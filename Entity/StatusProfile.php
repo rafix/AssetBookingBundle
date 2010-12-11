@@ -1,22 +1,149 @@
 <?php
 
 namespace Application\AssetBookingBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
 
+/**
+ * Application\AssetBookingBundle\Entity\StatusProfile
+ */
 class StatusProfile
 {
-    protected $id;
+    /**
+     * @var string $name
+     */
+    private $name;
 
-    protected $name;
-    protected $description;
+    /**
+     * @var string $description
+     */
+    private $description;
 
-    protected $items;
-    protected $createdAt;
-    protected $updatedAt;
+    /**
+     * @var datetime $createdAt
+     */
+    private $createdAt;
 
-    public function __construct()
+    /**
+     * @var datetime $updatedAt
+     */
+    private $updatedAt;
+
+    /**
+     * @var integer $id
+     */
+    private $id;
+
+    /**
+     * @var Application\AssetBookingBundle\Entity\StatusProfileItem
+     */
+    private $items;
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     */
+    public function setName($name)
     {
-        $this->items = new ArrayCollection();
+        $this->name = $name;
     }
 
+    /**
+     * Get name
+     *
+     * @return string $name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string $description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return datetime $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return datetime $updatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add items
+     *
+     * @param Application\AssetBookingBundle\Entity\StatusProfileItem $items
+     */
+    public function addItems(\Application\AssetBookingBundle\Entity\StatusProfileItem $items)
+    {
+        $this->items[] = $items;
+    }
+
+    /**
+     * Get items
+     *
+     * @return Doctrine\Common\Collections\Collection $items
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
 }

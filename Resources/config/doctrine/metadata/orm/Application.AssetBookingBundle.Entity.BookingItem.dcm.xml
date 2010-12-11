@@ -13,19 +13,19 @@
         </one-to-one>
 
 
-        <field name="groupInfoNumberOfAdults" column="group_info_number_of_adults" type="integer" />
-        <field name="groupInfoNumberOfChildren" column="group_info_number_of_children" type="integer" />
+        <field name="groupInfoNumberOfAdults" column="group_info_number_of_adults" type="integer"  nullable="true" />
+        <field name="groupInfoNumberOfChildren" column="group_info_number_of_children" type="integer"  nullable="true"/>
 
-        <field name="consumptionElectricity" column="consumption_electricity" type="float" />
-        <field name="consumptionFuel" column="consumption_fuel" type="float" />
-        <field name="consumptionGas" column="consumption_gas" type="float" />
-        <field name="consumptionWater" column="consumption_water" type="float" />
+        <field name="consumptionElectricity" column="consumption_electricity" type="float" nullable="true" />
+        <field name="consumptionFuel" column="consumption_fuel" type="float" nullable="true" />
+        <field name="consumptionGas" column="consumption_gas" type="float"  nullable="true"/>
+        <field name="consumptionWater" column="consumption_water" type="float" nullable="true" />
 
-        <field name="stateOfPropertyRemarks" column="state_of_property_remarks" type="text" />
+        <field name="stateOfPropertyRemarks" column="state_of_property_remarks" type="text"  nullable="true"/>
 
 
-        <field name="createdAt" column="created_at" type="datetime" />
-        <field name="updatedAt" column="updated_at" type="datetime" />
+        <field name="createdAt" column="created_at" type="datetime" nullable="true" />
+        <field name="updatedAt" column="updated_at" type="datetime" nullable="true" />
 
     </entity>
 

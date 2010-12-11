@@ -23,17 +23,35 @@ class SetupController extends Controller
 
     protected function loadFixtures(){
 
-        //Create default status profile for a customer booking
+         $em = $this->get('doctrine.orm.entity_manager');
+
+        //Create default status profile for a customer booking process
 
         $statusProfile = new StatusProfile();
         $statusProfile->setName('Default customer booking status profile');
-    
-        $status = new Status();
-        $statusProfileItem = new StatusProfileItem();
-        $statusProfileItem->setStatus($status);
 
-        $statusProfile->item[] = $statusProfileItem;
+        $statusesArray = array(
+            array('name' => 'Draft'),
+            array('name' => 'To be processed'),
+            array('name' => 'Waiting for payment'),
+            array('name' => 'Confirmed'),
+            array('name' => 'Dispute'),
+            array('name' => 'Cancelled by customer'),
+            array('name' => 'Cancelled by administration'));
 
+        foreach($statusesArray as $statusArray){
+            
+           $status = new Status();
+           $status->setDescription($statusArray['name']);
+           $status->setName($statusArray['name']);
+                      $statusProfileItem = new StatusProfileItem();
+           $statusProfileItem->setStatus($status);
+           $statusProfile->item[] = $statusProfileItem;
+
+        }
+     
+        $em->persist($statusProfile);
+        $em->flush();
         
     }
 }
