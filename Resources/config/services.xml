@@ -1,0 +1,15 @@
+<container xmlns="http://www.symfony-project.org/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="asset_booking.status_management.class">Application\AssetBookingBundle\Services\StatusManagement</parameter>
+    </parameters>
+
+     <services>
+         <service id="asset_booking.status_management" class="%asset_booking.status_management.class%">
+         </service>
+     </services>
+
+
+</container
