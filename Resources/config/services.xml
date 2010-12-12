@@ -3,13 +3,13 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="asset_booking.status_management.class">Application\AssetBookingBundle\Services\StatusManagement</parameter>
+        <parameter key="asset_booking.erp.core.customization.status_management.class">Application\AssetBookingBundle\Service\StatusManagement</parameter>
     </parameters>
 
      <services>
-         <service id="asset_booking.status_management" class="%asset_booking.status_management.class%">
+         <service id="erp.core.customization.status_management" class="%asset_booking.erp.core.customization.status_management.class%">
          </service>
      </services>
 
 
-</container
+</container>
