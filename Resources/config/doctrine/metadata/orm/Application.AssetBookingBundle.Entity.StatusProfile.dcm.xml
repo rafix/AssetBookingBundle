@@ -11,7 +11,7 @@
         <field name="name" column="name" type="string" length="150" />
         <field name="description" column="description" type="string" length="150"  nullable="true"/>
 
-        <one-to-many field="items" target-entity="StatusProfileItem" mapped-by="statusprofile">
+        <one-to-many field="items" target-entity="StatusProfileItem" mapped-by="status_profile">
             <cascade>
                 <cascade-persist/>
             </cascade>

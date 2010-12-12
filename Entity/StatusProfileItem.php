@@ -13,6 +13,16 @@ class StatusProfileItem
     private $sequenceNumber;
 
     /**
+     * @var boolean $isCompleted
+     */
+    private $isCompleted;
+
+    /**
+     * @var boolean $isInit
+     */
+    private $isInit;
+
+    /**
      * @var datetime $createdAt
      */
     private $createdAt;
@@ -50,6 +60,46 @@ class StatusProfileItem
     public function getSequenceNumber()
     {
         return $this->sequenceNumber;
+    }
+
+    /**
+     * Set isCompleted
+     *
+     * @param boolean $isCompleted
+     */
+    public function setIsCompleted($isCompleted)
+    {
+        $this->isCompleted = $isCompleted;
+    }
+
+    /**
+     * Get isCompleted
+     *
+     * @return boolean $isCompleted
+     */
+    public function getIsCompleted()
+    {
+        return $this->isCompleted;
+    }
+
+    /**
+     * Set isInit
+     *
+     * @param boolean $isInit
+     */
+    public function setIsInit($isInit)
+    {
+        $this->isInit = $isInit;
+    }
+
+    /**
+     * Get isInit
+     *
+     * @return boolean $isInit
+     */
+    public function getIsInit()
+    {
+        return $this->isInit;
     }
 
     /**

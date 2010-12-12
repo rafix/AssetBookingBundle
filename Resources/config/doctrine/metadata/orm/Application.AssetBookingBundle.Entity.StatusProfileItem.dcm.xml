@@ -13,8 +13,10 @@
         </one-to-one>
 
 
-        <field name="sequenceNumber" column="sequence_number" type="integer" />
-       
+        <field name="sequenceNumber" column="sequence_number" type="integer" nullable="true"  />
+        <field name="isCompleted" column="is_completed" type="boolean" nullable="true" />
+        <field name="isInit" column="is_init" type="boolean" nullable="true" />
+
         <field name="createdAt" column="created_at" type="datetime" nullable="true" />
         <field name="updatedAt" column="updated_at" type="datetime"  nullable="true"/>
 

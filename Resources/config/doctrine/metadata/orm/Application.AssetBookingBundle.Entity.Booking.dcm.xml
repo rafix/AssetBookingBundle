@@ -11,7 +11,7 @@
         <field name="bookingReference" column="name" type="string" length="50" nullable="true" />
         <field name="bookingRemarks" column="remarks" type="text"  nullable="true" />
 
-         <one-to-one field="customer" target-entity="Customer" inversed-by="customer">
+        <one-to-one field="customer" target-entity="Customer" inversed-by="booking">
             <join-column name="customer_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
         </one-to-one>
         <one-to-many field="items" target-entity="BookingItem" mapped-by="booking">
@@ -20,7 +20,9 @@
             </cascade>
         </one-to-many>
 
-        <field name="status" column="status" type="string" />
+        <one-to-one field="status" target-entity="Status" inversed-by="booking">
+                   <join-column name="status_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
+        </one-to-one>
 
 
         <field name="createdAt" column="created_at" type="datetime" />
