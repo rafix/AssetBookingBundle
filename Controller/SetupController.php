@@ -25,6 +25,8 @@ class SetupController extends Controller
 
          $em = $this->get('doctrine.orm.entity_manager');
 
+         
+
         //Create a default status profile for a typical customer booking process
 
         //Several kinds of booking processes can exist together in one system,
