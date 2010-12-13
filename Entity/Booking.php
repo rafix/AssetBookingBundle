@@ -18,11 +18,6 @@ class Booking
     private $bookingRemarks;
 
     /**
-     * @var string $status
-     */
-    private $status;
-
-    /**
      * @var datetime $createdAt
      */
     private $createdAt;
@@ -38,9 +33,19 @@ class Booking
     private $id;
 
     /**
+     * @var Application\AssetBookingBundle\Entity\BusinessObjectProfile
+     */
+    private $businessObjectProfile;
+
+    /**
      * @var Application\AssetBookingBundle\Entity\Customer
      */
     private $customer;
+
+    /**
+     * @var Application\AssetBookingBundle\Entity\Status
+     */
+    private $status;
 
     /**
      * @var Application\AssetBookingBundle\Entity\BookingItem
@@ -85,26 +90,6 @@ class Booking
     public function getBookingRemarks()
     {
         return $this->bookingRemarks;
-    }
-
-    /**
-     * Set status
-     *
-     * @param string $status
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string $status
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**
@@ -158,6 +143,26 @@ class Booking
     }
 
     /**
+     * Set businessObjectProfile
+     *
+     * @param Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
+     */
+    public function setBusinessObjectProfile(\Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile)
+    {
+        $this->businessObjectProfile = $businessObjectProfile;
+    }
+
+    /**
+     * Get businessObjectProfile
+     *
+     * @return Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
+     */
+    public function getBusinessObjectProfile()
+    {
+        return $this->businessObjectProfile;
+    }
+
+    /**
      * Set customer
      *
      * @param Application\AssetBookingBundle\Entity\Customer $customer
@@ -175,6 +180,26 @@ class Booking
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * Set status
+     *
+     * @param Application\AssetBookingBundle\Entity\Status $status
+     */
+    public function setStatus(\Application\AssetBookingBundle\Entity\Status $status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * Get status
+     *
+     * @return Application\AssetBookingBundle\Entity\Status $status
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**

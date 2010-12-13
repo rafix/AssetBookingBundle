@@ -3,6 +3,7 @@
 namespace Application\AssetBookingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Application\AssetBookingBundle\Entity\BusinessObjectProfile;
 use Application\AssetBookingBundle\Entity\StatusProfile;
 use Application\AssetBookingBundle\Entity\StatusProfileItem;
 use Application\AssetBookingBundle\Entity\Status;
@@ -25,15 +26,14 @@ class SetupController extends Controller
 
          $em = $this->get('doctrine.orm.entity_manager');
 
-         
-
+       
         //Create a default status profile for a typical customer booking process
 
         //Several kinds of booking processes can exist together in one system,
         //having their own set of statuses.
 
         $statusProfile = new StatusProfile();
-        $statusProfile->setName('booking_default');
+        $statusProfile->setName('booking_customer');
         $statusProfile->setDescription('Default customer booking status profile');
         $statusesArray = array(
             array('name'                => 'Draft',
@@ -41,7 +41,7 @@ class SetupController extends Controller
                   'is_init'             => true),
             array('name'                => 'Processed',
                   'is_completed'        => false,
-                  'is_init'             => true),
+                  'is_init'             => false),
 
             array('name'                => 'To be processed',
                   'is_completed'         => false),
@@ -66,7 +66,7 @@ class SetupController extends Controller
            $status->setName($statusArray['name']);
 
            $em->persist($status);
-$
+
            $statusProfileItem = new StatusProfileItem();
            $statusProfileItem->setStatus($status);
            $statusProfileItem->setIsCompleted($statusArray['is_completed']);
@@ -78,7 +78,15 @@ $
         }
      
         $em->persist($statusProfile);
-        $em->flush();
-        
+
+        //Create the business object profile containing all business object meta data
+         $businessObjectProfile = new BusinessObjectProfile();
+         $businessObjectProfile->setName('booking_customer');
+         $businessObjectProfile->setEntityType("\Application\AssetBookingBundle\Entity\Booking");
+         $businessObjectProfile->setStatusProfile($statusProfile);
+         
+         $em->persist($businessObjectProfile);
+         $em->flush();
+
     }
 }

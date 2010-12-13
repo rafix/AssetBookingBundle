@@ -8,12 +8,20 @@
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
+
+        <many-to-one field="businessObjectProfile" target-entity="BusinessObjectProfile" >
+            <join-column name="business_object_profile_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
+        </many-to-one>
+
+
         <field name="bookingReference" column="name" type="string" length="50" nullable="true" />
         <field name="bookingRemarks" column="remarks" type="text"  nullable="true" />
 
-        <one-to-one field="customer" target-entity="Customer" inversed-by="booking">
-            <join-column name="customer_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
-        </one-to-one>
+        <many-to-one field="customer" target-entity="Customer" >
+                <join-column name="customer_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
+            </many-to-one>
+
+
         <one-to-many field="items" target-entity="BookingItem" mapped-by="booking">
             <cascade>
                 <cascade-persist/>
@@ -25,8 +33,8 @@
         </one-to-one>
 
 
-        <field name="createdAt" column="created_at" type="datetime" />
-        <field name="updatedAt" column="updated_at" type="datetime" />
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"  />
+        <field name="updatedAt" column="updated_at" type="datetime" nullable="true"  />
 
     </entity>
 
