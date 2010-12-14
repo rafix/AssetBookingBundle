@@ -4,22 +4,13 @@
       xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Application\AssetBookingBundle\Entity\BusinessObjectProfile" table="business_object_profile">
+    <entity name="Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile" table="business_object_id_generator_profile">
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
         <field name="name" column="name" type="string" length="150" unique="true" />
         <field name="description" column="description" type="string" length="150"  nullable="true"/>
-        <field name="entityType" column="entity_type" type="string" length="150" />
-
-        <many-to-one field="statusProfile" target-entity="StatusProfile" >
-            <join-column name="status_profile_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
-        </many-to-one>
-
-        <many-to-one field="idGeneratorProfile" target-entity="BusinessObjectIdGeneratorProfile" >
-            <join-column name="id_generator_profile_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
-        </many-to-one>
-
+        <field name="class" column="class" type="string" length="150" />
 
         <field name="createdAt" column="created_at" type="datetime"  nullable="true"/>
         <field name="updatedAt" column="updated_at" type="datetime"  nullable="true"/>

@@ -8,9 +8,9 @@ namespace Application\AssetBookingBundle\Entity;
 class StatusProfileItem
 {
     /**
-     * @var integer $sequenceNumber
+     * @var integer $position
      */
-    private $sequenceNumber;
+    private $position;
 
     /**
      * @var boolean $isCompleted
@@ -43,23 +43,23 @@ class StatusProfileItem
     private $status;
 
     /**
-     * Set sequenceNumber
+     * Set position
      *
-     * @param integer $sequenceNumber
+     * @param integer $position
      */
-    public function setSequenceNumber($sequenceNumber)
+    public function setPosition($position)
     {
-        $this->sequenceNumber = $sequenceNumber;
+        $this->position = $position;
     }
 
     /**
-     * Get sequenceNumber
+     * Get position
      *
-     * @return integer $sequenceNumber
+     * @return integer $position
      */
-    public function getSequenceNumber()
+    public function getPosition()
     {
-        return $this->sequenceNumber;
+        return $this->position;
     }
 
     /**

@@ -33,16 +33,6 @@ class Booking
     private $id;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\BusinessObjectProfile
-     */
-    private $businessObjectProfile;
-
-    /**
-     * @var Application\AssetBookingBundle\Entity\Customer
-     */
-    private $customer;
-
-    /**
      * @var Application\AssetBookingBundle\Entity\Status
      */
     private $status;
@@ -51,6 +41,16 @@ class Booking
      * @var Application\AssetBookingBundle\Entity\BookingItem
      */
     private $items;
+
+    /**
+     * @var Application\AssetBookingBundle\Entity\BusinessObjectProfile
+     */
+    private $businessObjectProfile;
+
+    /**
+     * @var Application\AssetBookingBundle\Entity\Customer
+     */
+    private $customer;
 
     /**
      * Set bookingReference
@@ -143,46 +143,6 @@ class Booking
     }
 
     /**
-     * Set businessObjectProfile
-     *
-     * @param Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
-     */
-    public function setBusinessObjectProfile(\Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile)
-    {
-        $this->businessObjectProfile = $businessObjectProfile;
-    }
-
-    /**
-     * Get businessObjectProfile
-     *
-     * @return Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
-     */
-    public function getBusinessObjectProfile()
-    {
-        return $this->businessObjectProfile;
-    }
-
-    /**
-     * Set customer
-     *
-     * @param Application\AssetBookingBundle\Entity\Customer $customer
-     */
-    public function setCustomer(\Application\AssetBookingBundle\Entity\Customer $customer)
-    {
-        $this->customer = $customer;
-    }
-
-    /**
-     * Get customer
-     *
-     * @return Application\AssetBookingBundle\Entity\Customer $customer
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-
-    /**
      * Set status
      *
      * @param Application\AssetBookingBundle\Entity\Status $status
@@ -220,5 +180,45 @@ class Booking
     public function getItems()
     {
         return $this->items;
+    }
+
+    /**
+     * Set businessObjectProfile
+     *
+     * @param Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
+     */
+    public function setBusinessObjectProfile(\Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile)
+    {
+        $this->businessObjectProfile = $businessObjectProfile;
+    }
+
+    /**
+     * Get businessObjectProfile
+     *
+     * @return Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
+     */
+    public function getBusinessObjectProfile()
+    {
+        return $this->businessObjectProfile;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param Application\AssetBookingBundle\Entity\Customer $customer
+     */
+    public function setCustomer(\Application\AssetBookingBundle\Entity\Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return Application\AssetBookingBundle\Entity\Customer $customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
     }
 }

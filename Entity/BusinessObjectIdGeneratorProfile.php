@@ -3,9 +3,9 @@
 namespace Application\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\StatusProfile
+ * Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile
  */
-class StatusProfile
+class BusinessObjectIdGeneratorProfile
 {
     /**
      * @var string $name
@@ -16,6 +16,11 @@ class StatusProfile
      * @var string $description
      */
     private $description;
+
+    /**
+     * @var string $class
+     */
+    private $class;
 
     /**
      * @var datetime $createdAt
@@ -31,11 +36,6 @@ class StatusProfile
      * @var integer $id
      */
     private $id;
-
-    /**
-     * @var Application\AssetBookingBundle\Entity\StatusProfileItem
-     */
-    private $items;
 
     /**
      * Set name
@@ -75,6 +75,26 @@ class StatusProfile
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set class
+     *
+     * @param string $class
+     */
+    public function setClass($class)
+    {
+        $this->class = $class;
+    }
+
+    /**
+     * Get class
+     *
+     * @return string $class
+     */
+    public function getClass()
+    {
+        return $this->class;
     }
 
     /**
@@ -125,25 +145,5 @@ class StatusProfile
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Add item
-     *
-     * @param Application\AssetBookingBundle\Entity\StatusProfileItem $items
-     */
-    public function addItem(\Application\AssetBookingBundle\Entity\StatusProfileItem $items)
-    {
-        $this->items[] = $items;
-    }
-
-    /**
-     * Get items
-     *
-     * @return Doctrine\Common\Collections\Collection $items
-     */
-    public function getItems()
-    {
-        return $this->items;
     }
 }

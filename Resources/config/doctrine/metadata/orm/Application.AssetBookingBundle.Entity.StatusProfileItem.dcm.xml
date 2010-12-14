@@ -8,12 +8,12 @@
             <generator strategy="IDENTITY"/>
         </id>
 
-        <one-to-one field="status" target-entity="Status" inversed-by="status">
-               <join-column name="status_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
-        </one-to-one>
+        <many-to-one field="status" target-entity="Status" >
+            <join-column name="status_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
+        </many-to-one>
 
 
-        <field name="sequenceNumber" column="sequence_number" type="integer" nullable="true"  />
+        <field name="position" column="sequence_number" type="integer" nullable="true"  />
         <field name="isCompleted" column="is_completed" type="boolean" nullable="true" />
         <field name="isInit" column="is_init" type="boolean" nullable="true" />
 

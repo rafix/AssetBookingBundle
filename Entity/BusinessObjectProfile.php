@@ -43,6 +43,11 @@ class BusinessObjectProfile
     private $statusProfile;
 
     /**
+     * @var Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile
+     */
+    private $idGeneratorProfile;
+
+    /**
      * Set name
      *
      * @param string $name
@@ -170,5 +175,25 @@ class BusinessObjectProfile
     public function getStatusProfile()
     {
         return $this->statusProfile;
+    }
+
+    /**
+     * Set idGeneratorProfile
+     *
+     * @param Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile $idGeneratorProfile
+     */
+    public function setIdGeneratorProfile(\Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile $idGeneratorProfile)
+    {
+        $this->idGeneratorProfile = $idGeneratorProfile;
+    }
+
+    /**
+     * Get idGeneratorProfile
+     *
+     * @return Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile $idGeneratorProfile
+     */
+    public function getIdGeneratorProfile()
+    {
+        return $this->idGeneratorProfile;
     }
 }

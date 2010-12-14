@@ -12,13 +12,15 @@ class DashboardController extends Controller
         
 		$businessObjectManagementService = $this->get('erp.core.customization.business_object_profile');
 
-        $booking = $businessObjectManagementService->createBusinessObject('booking_customer');
+        $booking = $businessObjectManagementService->createBusinessObject('booking_by_customer');
 
         if($booking){
 
-            $booking->setBookingReference('abc123');
-            $em->persist($booking);
+            $businessObjectManagementService->saveBusinessObject($booking);
             $em->flush();
+
+        }else{
+            echo 'error';
         }
         //echo $statusManagementService->getStatusProfile('booking_default');
 
