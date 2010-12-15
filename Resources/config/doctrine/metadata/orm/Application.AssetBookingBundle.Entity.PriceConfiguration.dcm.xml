@@ -1,0 +1,23 @@
+<!-- Application/HelloBundle/Resources/config/doctrine/metadata/orm/Application.HelloBundle.Entity.User.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Application\AssetBookingBundle\Entity\PriceConfiguration" table="price_configuration">
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="name" column="name" type="string" length="100" />
+        <field name="description" description="name" type="string" length="100"  nullable="true" />
+
+        <field name="accessSequence" description="access_sequence" type="string" length="100"  nullable="true" />
+
+        <many-to-one field="conditions" target-entity="PriceCondition" >
+            <join-column name="price_condition_id" referenced-column-name="id" on-delete="CASCADE" on-update="CASCADE"/>
+        </many-to-one>
+    </entity>
+
+
+</doctrine-mapping>

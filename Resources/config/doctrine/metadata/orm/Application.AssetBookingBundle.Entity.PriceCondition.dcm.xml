@@ -1,0 +1,21 @@
+<!-- Application/HelloBundle/Resources/config/doctrine/metadata/orm/Application.HelloBundle.Entity.User.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Application\AssetBookingBundle\Entity\PriceCondition" table="price_condition">
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="name" column="name" type="string" length="100" />
+        <field name="description" description="name" type="string" length="100"  nullable="true" />
+
+        <field name="type" description="type" type="string" length="100"  />
+        <field name="class" description="class" type="string" length="100"  nullable="true" />
+
+    </entity>
+
+
+</doctrine-mapping>

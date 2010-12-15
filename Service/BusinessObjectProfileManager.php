@@ -78,7 +78,7 @@ class BusinessObjectProfileManager {
                 //Lock so the id generator isn't disturbed
                 $idGenerator->lock($businessObjectProfile->getEntityType());
 
-                //Set the id
+                //Generate the id
                 $entity->setBookingReference($idGenerator->generate());
                 $em->persist($entity);
                 $idGenerator->unlock($businessObjectProfile->getEntityType());
