@@ -10,14 +10,17 @@ class DashboardController extends Controller
     {
 	    $em = $this->get('doctrine.orm.entity_manager');
         
-		$businessObjectManagementService = $this->get('erp.core.customization.business_object_profile');
+		$boPricingService = $this->get('erp.core.customization.business_object.pricing_manager');
+		$boProfileService = $this->get('erp.core.customization.business_object.profile_manager');
+	
+		$booking = $boProfileService->create('booking_by_customer');
+		
+		if($booking){
 
-        $booking = $businessObjectManagementService->createBusinessObject('booking_by_customer');
-
-        if($booking){
-
-            $businessObjectManagementService->saveBusinessObject($booking);
-            $em->flush();
+			$prices = $boPricingService->getPricesForEntity($booking);
+        	var_dump($prices);
+            //$businessObjectManagementService->saveBusinessObject($booking);
+            //$em->flush();
 
         }else{
             echo 'error';

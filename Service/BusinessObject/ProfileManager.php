@@ -1,8 +1,8 @@
 <?php
-namespace Application\AssetBookingBundle\Service;
+namespace Application\AssetBookingBundle\Service\BusinessObject;
 
 
-class BusinessObjectProfileManager {
+class ProfileManager {
 
     protected $container;
     
@@ -28,10 +28,10 @@ class BusinessObjectProfileManager {
     }
 */
     
-    public function createBusinessObject($name){
+    public function create($profileName){
 
         $em = $this->container->get('doctrine.orm.entity_manager');
-        $statusProfileManager = $this->container->get('erp.core.customization.status_profile_manager');
+        $statusProfileManager = $this->container->get('erp.core.customization.business_object.status_profile_manager');
 
 
         $entity = null;
@@ -39,7 +39,7 @@ class BusinessObjectProfileManager {
 
         //Find the business object profile for given name
         $businessObjectProfile = $em->getRepository('Application\AssetBookingBundle\Entity\BusinessObjectProfile')
-                   ->findOneBy(array('name' => $name));
+                   ->findOneBy(array('name' => $profileName));
 
         //The business object profile knows the real entity type
         if($businessObjectProfile){
@@ -60,7 +60,7 @@ class BusinessObjectProfileManager {
     public function saveBusinessObject($entity){
 
         $em = $this->container->get('doctrine.orm.entity_manager');
-        $statusProfileManager = $this->container->get('erp.core.customization.status_profile_manager');
+        $statusProfileManager = $this->container->get('erp.core.customization.business_object.status_profile_manager');
 
 
 

@@ -1,13 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: inspiran
- * Date: 16-dec-2010
- * Time: 0:18:02
- * To change this template use File | Settings | File Templates.
- */
- 
-class PricingContainer {
+namespace Application\AssetBookingBundle\Pricing;
+
+class PricingContextContainer {
 
     protected $entities;
     protected $data;
@@ -16,9 +10,15 @@ class PricingContainer {
         $this->entities = array();
         $this->data = array();
     }
+	
+	public function addEntity(&$entity){
+		$this->entities[] = $entity;
+	}
+	
     public function getEntities(){
         return $this->entities;
     }
+	
 
     public function setEntities($entities){
         $this->entities = $entities;
@@ -34,7 +34,7 @@ class PricingContainer {
         $this->data[$key] = $value;
     }
 
-    public function getContainer(){
+    public function getContainerData(){
         return $this->data;
     }
 }

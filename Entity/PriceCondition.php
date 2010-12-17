@@ -18,6 +18,11 @@ class PriceCondition
     private $description;
 
     /**
+     * @var text $parameters
+     */
+    private $parameters;
+
+    /**
      * @var string $type
      */
     private $type;
@@ -70,6 +75,26 @@ class PriceCondition
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set parameters
+     *
+     * @param text $parameters
+     */
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
+    }
+
+    /**
+     * Get parameters
+     *
+     * @return text $parameters
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 
     /**

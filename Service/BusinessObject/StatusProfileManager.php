@@ -1,5 +1,5 @@
 <?php
-namespace Application\AssetBookingBundle\Service;
+namespace Application\AssetBookingBundle\Service\BusinessObject;
 
 
 class StatusProfileManager {

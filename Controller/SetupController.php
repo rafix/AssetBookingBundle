@@ -55,7 +55,7 @@ class SetupController extends Controller
         $idGeneratorProfile->setName('booking_customer_id_generator');
         $idGeneratorProfile->setClass("\Application\AssetBookingBundle\IdGenerator\SimpleIdGenerator");
         $em->persist($idGeneratorProfile);
-
+		
         //Create the business object profile containing all business object meta data
         $businessObjectProfileCustomer = new BusinessObjectProfile();
         $businessObjectProfileCustomer->setName('booking_by_customer');

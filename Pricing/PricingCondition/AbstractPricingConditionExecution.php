@@ -1,8 +1,21 @@
 <?php
 
+namespace Application\AssetBookingBundle\Pricing\PricingCondition;
+
  abstract class AbstractPricingConditionExecution {
 
-   abstract public function AbstractPricingConditionExecution($pricingCondition, $pricingContainer, $serviceContainer);
-   abstract public function execute();
+	protected $pricingCondition;
+	protected $pricingContextContainer;
+	protected $serviceContainer;
+	
+  	public function AbstractPricingConditionExecution(&$pricingCondition, &$pricingContextContainer, &$serviceContainer){
+	
+		$this->pricingCondition = $pricingCondition;
+		$this->pricingContextContainer = $pricingContextContainer;
+		$this->serviceContainer = $serviceContainer;
+	
+    }
+
+	abstract public function execute();
 
 }

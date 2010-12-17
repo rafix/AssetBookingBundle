@@ -3,18 +3,24 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="asset_booking.erp.core.customization.business_object_profile_manager.class">Application\AssetBookingBundle\Service\BusinessObjectProfileManager</parameter>
-        <parameter key="asset_booking.erp.core.customization.status_profile_manager.class">Application\AssetBookingBundle\Service\StatusProfileManager</parameter>
+        <parameter key="asset_booking.erp.core.customization.business_object.status_profile_manager.class">Application\AssetBookingBundle\Service\BusinessObject\StatusProfileManager</parameter>
+        <parameter key="asset_booking.erp.core.customization.business_object.pricing_manager.class">Application\AssetBookingBundle\Service\BusinessObject\PricingManager</parameter>
+		<parameter key="asset_booking.erp.core.customization.business_object.profile_manager.class">Application\AssetBookingBundle\Service\BusinessObject\ProfileManager</parameter>
     </parameters>
 
      <services>
-         <service id="erp.core.customization.business_object_profile" class="%asset_booking.erp.core.customization.business_object_profile_manager.class%">
+         <service id="erp.core.customization.business_object.profile_manager" class="%asset_booking.erp.core.customization.business_object.profile_manager.class%">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
          </service>
-
-         <service id="erp.core.customization.status_profile_manager" class="%asset_booking.erp.core.customization.status_profile_manager.class%">
+         <service id="erp.core.customization.business_object.pricing_manager" class="%asset_booking.erp.core.customization.business_object.pricing_manager.class%">
+             <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+         </service>
+   
+         <service id="erp.core.customization.business_object.status_profile_manager" class="%asset_booking.erp.core.customization.business_object.status_profile_manager.class%">
              <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>

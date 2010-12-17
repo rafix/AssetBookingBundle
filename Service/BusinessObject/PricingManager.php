@@ -1,42 +1,31 @@
 <?php
-namespace Application\AssetBookingBundle\Service;
+namespace Application\AssetBookingBundle\Service\BusinessObject;
+
+use Application\AssetBookingBundle\Pricing\PricingContextContainer;
+use Application\AssetBOokingBundle\Entity\PriceCondition;
+use Application\AssetBOokingBundle\Entity\PriceConfiguration;
 
 
-class BusinessObjectPricingManager {
+class PricingManager {
 
     protected $container;
     
     public function setContainer($container){
         $this->container = $container;
     }
-/**
-    public function getBusinessProfileForEntity($entity){
-
-        $em = $this->container->get('doctrine.orm.entity_manager');
-        $businessObjectProfileService = $this->container->get('erp.core.customization.business_object_profile_manager');
 
 
-       //Retrieve business object profile for the entity
-
-        $boProfile = $businessObjectProfileService->getProfilentity($entity);
-
-        //The business object profile knows what statuses we do have
-        $statusProfile = $boProfile->getStatusProfile();
-
-        return $statusProfile->getAvailableStatuseForEntity($entity);
-
-    }
-*/
-
-    public function getPrices($pricingContextContainer){
-
-        //Determine active pricing configuration
-
-        if($pricingConfiguration = $this->determinePriceConfiguration($pricingContextContainer)){
-
-            $this->executePricingAccessSequence($pricingConfiguration, $pricingContextContainer);
-        }
-    }
+	public function getPricesForEntity($entity, $pricingContextContainer = null){
+		
+		if(!$pricingContextContainer){
+		
+			$pricingContextContainer = new PricingContextContainer();
+		}
+		
+		$pricingContextContainer->addEntity($booking);
+	
+		return $this->executePriceContextContainer($pricingContextContainer);
+	}
 
 
     public function determinePriceConfiguration($pricingContextContainer){
@@ -47,7 +36,7 @@ class BusinessObjectPricingManager {
          * Following code should be stored in the db some day
          */
 
-        $priceConfiguration = new PricingConfiguration();
+        $priceConfiguration = new PriceConfiguration();
         $priceConfiguration->setName('default asset pricing for customers');
 
         $priceConditionBaseNetValue = new PriceCondition();
@@ -75,8 +64,8 @@ class BusinessObjectPricingManager {
         $priceConditionDiscount->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\HeaderDiscount');
 
         $priceConditionAddFee = new PriceCondition();
-        $priceConditionAddFee->setName('add_fixed_fee');
-        $priceConditionAddFee->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\AddFixedFee');
+        $priceConditionAddFee->setName('add_fixed_value');
+        $priceConditionAddFee->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\AddFixedValue');
         $priceConditionAddFee->setParameters(serialize(
             array('amount' => 5,
                   'currency' => 'euro',
@@ -100,13 +89,14 @@ class BusinessObjectPricingManager {
                     'vat_rate'  => 'container.vat_rate',
                     'target'    => 'container.total_excl_vat')));
 
-        $priceConfiguration->addCondition($priceConditionBaseNetValue);
-        $priceConfiguration->addCondition($priceConditionDiscount);
-        $priceConfiguration->addCondition($priceConditionAddFee);
-        $priceConfiguration->addCondition($priceConditionTotalExcl);
-        $priceConfiguration->addCondition($priceConditionTotalVat);
-
-        //In which sequence should conditions be executed
+        $priceConfiguration->addPriceCondition($priceConditionBaseNetValue);
+        $priceConfiguration->addPriceCondition($priceConditionDiscount);
+        $priceConfiguration->addPriceCondition($priceConditionAddFee);
+        $priceConfiguration->addPriceCondition($priceConditionTotalExcl);
+        $priceConfiguration->addPriceCondition($priceConditionTotalVat);
+        
+		/**
+		//In which sequence should conditions be executed
         $priceConfiguration->setAccessSequence(
             $priceConditionBaseNetValue,
             $priceConditionNetPromotionValue,
@@ -114,25 +104,39 @@ class BusinessObjectPricingManager {
             $priceConditionAddFee,
             $priceConditionTotalExcl,
             $priceConditionTotalVat);
-
+		*/
+		return $priceConfiguration;
     }
 
-    public function executePricingAccessSequence($priceConfiguration, $pricingContextContainer){
-
-        foreach($priceConfiguration->getAccessSequence() as $priceCondition){
+    protected function executePricingAccessSequence(&$priceConfiguration, &$pricingContextContainer){
+		
+		//Todo, use access sequence instead of iterating over price conditions collection
+        foreach($priceConfiguration->getPriceConditions() as $priceCondition){
 
             $priceConditionExecutionClassName = $priceCondition->getClass();
-            $priceConditionExecution = new $priceConditionExecutionClassName($priceCondition);
-
-            $priceConditionExecution->execute($pricingContextContainer, $this->container);
+		    $priceConditionExecution = new $priceConditionExecutionClassName($priceCondition, $pricingContextContainer, $this->container);
+			$priceConditionExecution->execute();
         }
 
         /**
          * Now the container is enhanced with calculated values
-         * It's the initial caller who is responsible for determining which values are needed.
-         * Even more cool: the full determination could be stored together with the asset booking for auditing purposes
+         * It's the initial caller which is responsible for determining which container values are needed.
+         * Even better: the full pricing determination could be stored for auditing purposes
          */
 
     }
+	
+    protected function executePriceContextContainer(&$priceContextContainer){
+
+        //Determine active pricing configuration
+
+        if($priceConfiguration = $this->determinePriceConfiguration($priceContextContainer)){
+			
+            $this->executePricingAccessSequence($priceConfiguration, $priceContextContainer);
+			
+			return $priceContextContainer->getContainerData();
+        }
+    }
+		
 }
 

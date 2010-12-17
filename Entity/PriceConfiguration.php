@@ -30,7 +30,7 @@ class PriceConfiguration
     /**
      * @var Application\AssetBookingBundle\Entity\PriceCondition
      */
-    private $conditions;
+    private $priceConditions;
 
     /**
      * Set name
@@ -103,22 +103,22 @@ class PriceConfiguration
     }
 
     /**
-     * Set conditions
+     * Add priceConditions
      *
-     * @param Application\AssetBookingBundle\Entity\PriceCondition $conditions
+     * @param Application\AssetBookingBundle\Entity\PriceCondition $priceConditions
      */
-    public function setConditions(\Application\AssetBookingBundle\Entity\PriceCondition $conditions)
+    public function addPriceCondition(\Application\AssetBookingBundle\Entity\PriceCondition $priceConditions)
     {
-        $this->conditions = $conditions;
+        $this->priceConditions[] = $priceConditions;
     }
 
     /**
-     * Get conditions
+     * Get priceConditions
      *
-     * @return Application\AssetBookingBundle\Entity\PriceCondition $conditions
+     * @return Doctrine\Common\Collections\Collection $priceConditions
      */
-    public function getConditions()
+    public function getPriceConditions()
     {
-        return $this->conditions;
+        return $this->priceConditions;
     }
 }

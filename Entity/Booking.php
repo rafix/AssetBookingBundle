@@ -167,7 +167,7 @@ class Booking
      *
      * @param Application\AssetBookingBundle\Entity\BookingItem $items
      */
-    public function addItems(\Application\AssetBookingBundle\Entity\BookingItem $items)
+    public function addItem(\Application\AssetBookingBundle\Entity\BookingItem $items)
     {
         $this->items[] = $items;
     }

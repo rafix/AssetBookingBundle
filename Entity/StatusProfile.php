@@ -132,7 +132,7 @@ class StatusProfile
      *
      * @param Application\AssetBookingBundle\Entity\StatusProfileItem $items
      */
-    public function addItems(\Application\AssetBookingBundle\Entity\StatusProfileItem $items)
+    public function addItem(\Application\AssetBookingBundle\Entity\StatusProfileItem $items)
     {
         $this->items[] = $items;
     }

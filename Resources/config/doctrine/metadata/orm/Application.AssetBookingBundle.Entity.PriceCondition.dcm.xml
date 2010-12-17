@@ -11,6 +11,7 @@
 
         <field name="name" column="name" type="string" length="100" />
         <field name="description" description="name" type="string" length="100"  nullable="true" />
+		<field name="parameters" description="parameters" type="text" nullable="true" />
 
         <field name="type" description="type" type="string" length="100"  />
         <field name="class" description="class" type="string" length="100"  nullable="true" />
