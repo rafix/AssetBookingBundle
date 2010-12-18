@@ -6,9 +6,9 @@ class PricingContextContainer {
     protected $entities;
     protected $data;
 
-    public function PricingContainer(){
+    public function PricingContextContainer($data = array()){
         $this->entities = array();
-        $this->data = array();
+        $this->data = $data;
     }
 	
 	public function addEntity(&$entity){
@@ -25,7 +25,7 @@ class PricingContextContainer {
     }
     
     public function get($key){
-        if(array_key_exist($key, $this->data)){
+        if(array_key_exists($key, $this->data)){
             return $this->data[$key];
         }
     }

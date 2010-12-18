@@ -15,12 +15,12 @@ class PricingManager {
     }
 
 
-	public function getPricesForEntity($entity, $pricingContextContainer = null){
+	public function getPricesForEntity($entity, $pricingContextData= array()){
 		
-		if(!$pricingContextContainer){
+		//if(!$pricingContextContainer){
 		
-			$pricingContextContainer = new PricingContextContainer();
-		}
+			$pricingContextContainer = new PricingContextContainer($pricingContextData);
+
 		
 		$pricingContextContainer->addEntity($booking);
 	
@@ -50,18 +50,19 @@ class PricingManager {
         //Determine promotional prices for specific periods and override the container value
         $priceConditionNetPromotionValue = new PriceCondition();
         $priceConditionNetPromotionValue->setName('get_promotion_values');
-
+        $priceConditionNetPromotionValue->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\GetPromotionValues');
         $priceConditionNetPromotionValue->setParameters(serialize(
             array('source' => 'entity.net_value',
-                  'target' => 'container.net_value')));
-        $priceConditionNetPromotionValue->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\GetPromotionValues');
+                  'target' => 'net_value')));
 
         $priceConditionDiscount = new PriceCondition();
         $priceConditionDiscount->setName('add_discount');
-
-        //Retrieve previously stored container.net_value field and put calculations into target container field container.discount
-        $priceConditionDiscount->setParameters(serialize(array('source' => 'container.net_value', 'target' => 'container.discount')));
         $priceConditionDiscount->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\HeaderDiscount');
+        //Retrieve previously stored container.net_value field and put calculations into target container field container.discount
+        $priceConditionDiscount->setParameters(serialize(
+            array('source'             => 'net_value',
+                  'type'               => 'percentage',
+                  'target'             => 'discount')));
 
         $priceConditionAddFee = new PriceCondition();
         $priceConditionAddFee->setName('add_fixed_value');
@@ -69,7 +70,7 @@ class PricingManager {
         $priceConditionAddFee->setParameters(serialize(
             array('amount' => 5,
                   'currency' => 'euro',
-                  'target' => 'container.admin_fee')));
+                  'target' => 'admin_fee')));
 
 
         $priceConditionTotalExcl = new PriceCondition();
@@ -77,23 +78,34 @@ class PricingManager {
         $priceConditionTotalExcl->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\AddSum');
         $priceConditionTotalExcl->setParameters(serialize(
             array('source' =>
-                    array('+' => 'container.net_value',
-                          '-' => 'container.discount',
-                          '+' => 'container.admin_fee'),
-                   'target' => 'container.total_excl_vat')));
+                    array('net_value' => '+',
+                          'discount' => '-',
+                          'admin_fee' => '+'),
+                   'target' => 'total_excl_vat')));
 
         $priceConditionTotalVat = new PriceCondition();
+        $priceConditionTotalExcl->setName('add_vat');
         $priceConditionTotalVat->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\AddVat');
         $priceConditionTotalVat->setParameters(serialize(
-              array('source'    => 'container.total_excl_vat',
-                    'vat_rate'  => 'container.vat_rate',
-                    'target'    => 'container.total_excl_vat')));
+              array('source'    => 'total_excl_vat',
+                    'target'    => 'total_vat')));
+
+        $priceConditionTotal = new PriceCondition();
+        $priceConditionTotal->setName('sum_total');
+        $priceConditionTotal->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\AddSum');
+        $priceConditionTotal->setParameters(serialize(
+            array('source' =>
+                    array('total_excl_vat' => '+',
+                          'total_vat' => '+'),
+
+                   'target' => 'total_incl_vat')));
 
         $priceConfiguration->addPriceCondition($priceConditionBaseNetValue);
+        $priceConfiguration->addPriceCondition($priceConditionNetPromotionValue);
         $priceConfiguration->addPriceCondition($priceConditionDiscount);
         $priceConfiguration->addPriceCondition($priceConditionAddFee);
         $priceConfiguration->addPriceCondition($priceConditionTotalExcl);
-        $priceConfiguration->addPriceCondition($priceConditionTotalVat);
+        $priceConfiguration->addPriceCondition($priceConditionTotal);
         
 		/**
 		//In which sequence should conditions be executed

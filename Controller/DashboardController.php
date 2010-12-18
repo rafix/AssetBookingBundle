@@ -17,8 +17,13 @@ class DashboardController extends Controller
 		
 		if($booking){
 
-			$prices = $boPricingService->getPricesForEntity($booking);
+
+			$prices = $boPricingService->getPricesForEntity(
+                        $booking,
+                        array('discount_rate' => 10,
+                              'vat_rate' => 21));
         	var_dump($prices);
+            
             //$businessObjectManagementService->saveBusinessObject($booking);
             //$em->flush();
 

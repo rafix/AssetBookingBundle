@@ -8,8 +8,15 @@ use Application\AssetBookingBundle\Pricing\PricingCondition\AbstractPricingCondi
 
    public function execute(){
 
-		$parameters = unserialize($this->pricingCondition->getParameters());
+       $vatRate = $this->pricingContextContainer->get('vat_rate');
 
+       if($vatRate && $vatRate > 0){
+
+           $value =  $this->pricingContextContainer->get($this->getParameter('source'));
+           $value = $value / 100 *  $vatRate;
+           $this->pricingContextContainer->set(
+                $this->getParameter('target'), $value);
+       }
 		
    }
 

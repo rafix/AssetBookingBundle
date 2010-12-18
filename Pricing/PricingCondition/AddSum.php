@@ -8,7 +8,21 @@ use Application\AssetBookingBundle\Pricing\PricingCondition\AbstractPricingCondi
 
    public function execute(){
 
-		$parameters = unserialize($this->pricingCondition->getParameters());
+        $total = 0;
+
+        
+        foreach($this->getParameter('source') as $sourceField => $operator){
+
+            $value = $this->pricingContextContainer->get($sourceField);
+            switch($operator){
+                case '+': $total += $value; break;
+                case '-': $total -= $value; break;
+
+            }
+        }
+        $this->pricingContextContainer->set(
+                        $this->getParameter('target'),
+                        $total);
 
 		
    }
