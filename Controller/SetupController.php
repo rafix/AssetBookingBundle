@@ -3,12 +3,17 @@
 namespace Application\AssetBookingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+use Application\AssetBookingBundle\Entity\Asset;
+use Application\AssetBookingBundle\Entity\AssetPeriodType;
+use Application\AssetBookingBundle\Entity\AssetPeriodTypePrice;
 use Application\AssetBookingBundle\Entity\BusinessObjectProfile;
 use Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile;
-
 use Application\AssetBookingBundle\Entity\StatusProfile;
 use Application\AssetBookingBundle\Entity\StatusProfileItem;
 use Application\AssetBookingBundle\Entity\Status;
+
+
 
 
 
@@ -175,6 +180,52 @@ class SetupController extends Controller
 
         $em->persist($statusProfileAgency);
         $em->flush();
+
+
+
+
+       $midweek = new AssetPeriodType();
+       $midweek->setName('mid_week');
+       $weekend = new AssetPeriodType();
+       $weekend->setName('weekend');
+       $longweekend = new AssetPeriodType();
+       $longweekend->setName('long weekend');
+       $fullweek = new AssetPeriodType();
+       $fullweek->setName('full week');
+
+       $em->persist($midweek);
+       $em->persist($weekend);
+       $em->persist($longweekend);
+       $em->persist($fullweek);
+
+       //Now create an asset
+       $villaAsset = new Asset();
+       $villaAsset->setName('villa');
+       $villaAsset->setDescription('villa');
+       $villaAsset->addAssetPeriodType($midweek);
+       $villaAsset->addAssetPeriodType($weekend);
+       $villaAsset->addAssetPeriodType($longweekend);
+       $villaAsset->addAssetPeriodType($fullweek);
+
+       $em->persist($villaAsset);
+
+       $fromDateTime = \DateTime::createFromFormat('Y-m-d H:i:s', '2011-01-01 00:00:00');
+       $toDateTime = \DateTime::createFromFormat('Y-m-d H:i:s','2099-01-01 00:00:00');
+
+       //Default prices
+       $villaWeekendPrice = new AssetPeriodTypePrice();
+       $villaWeekendPrice->setAsset($villaAsset);
+       $villaWeekendPrice->setAssetPeriodType($weekend);
+       $villaWeekendPrice->setPrice(1000);
+       $villaWeekendPrice->setPriceFrom($fromDateTime);
+       $villaWeekendPrice->setPriceTo($toDateTime);
+
+       $em->persist($villaWeekendPrice);
+
+
+
+
+       $em->flush();
 
     }
 }

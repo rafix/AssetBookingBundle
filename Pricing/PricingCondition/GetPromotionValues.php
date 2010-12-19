@@ -10,7 +10,7 @@ use Application\AssetBookingBundle\Pricing\PricingCondition\AbstractPricingCondi
 
        $entities = $this->pricingContextContainer->getEntities();
        $entity = $entities[0];
-       $this->pricingContextContainer->set('net_value', 1250);
+       //$this->pricingContextContainer->set('net_value', 1250);
    }
 
 }

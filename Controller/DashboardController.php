@@ -3,6 +3,8 @@
 namespace Application\AssetBookingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Application\AssetBookingBundle\Entity\BookingItem;
+
 
 class DashboardController extends Controller
 {
@@ -17,11 +19,25 @@ class DashboardController extends Controller
 		
 		if($booking){
 
+           //Get asset
+
+            $villaAsset = $em->getRepository('Application\AssetBookingBundle\Entity\Asset')
+                   ->findOneBy(array('name' => 'villa'));
+
+            $weekendPeriodType = $em->getRepository('Application\AssetBookingBundle\Entity\AssetPeriodType')
+                            ->findOneBy(array('name' => 'weekend'));
+
+            $bookingItem = new BookingItem();
+            $bookingItem->setAsset($villaAsset);
+            $booking->addItem($bookingItem);
+            
 
 			$prices = $boPricingService->getPricesForEntity(
-                        $booking,
+                        $villaAsset,
                         array('discount_rate' => 10,
-                              'vat_rate' => 21));
+                              'vat_rate' => 21,
+                              'asset_booking_period_type' => $weekendPeriodType->getId(),
+                              'asset_booking_period_from' => '07.01.2011'));
         	var_dump($prices);
             
             //$businessObjectManagementService->saveBusinessObject($booking);

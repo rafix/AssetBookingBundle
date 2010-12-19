@@ -23,6 +23,11 @@ class Asset
     private $name;
 
     /**
+     * @var string $description
+     */
+    private $description;
+
+    /**
      * @var datetime $createdAt
      */
     private $createdAt;
@@ -36,6 +41,11 @@ class Asset
      * @var integer $id
      */
     private $id;
+
+    /**
+     * @var Application\AssetBookingBundle\Entity\AssetPeriodType
+     */
+    private $assetPeriodTypes;
 
     /**
      * Set availableFrom
@@ -98,6 +108,26 @@ class Asset
     }
 
     /**
+     * Set description
+     *
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string $description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
      * Set createdAt
      *
      * @param datetime $createdAt
@@ -145,5 +175,25 @@ class Asset
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Add assetPeriodTypes
+     *
+     * @param Application\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodTypes
+     */
+    public function addAssetPeriodType(\Application\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodTypes)
+    {
+        $this->assetPeriodTypes[] = $assetPeriodTypes;
+    }
+
+    /**
+     * Get assetPeriodTypes
+     *
+     * @return Doctrine\Common\Collections\Collection $assetPeriodTypes
+     */
+    public function getAssetPeriodTypes()
+    {
+        return $this->assetPeriodTypes;
     }
 }

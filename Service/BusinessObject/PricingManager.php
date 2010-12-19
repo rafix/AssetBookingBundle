@@ -22,7 +22,7 @@ class PricingManager {
 			$pricingContextContainer = new PricingContextContainer($pricingContextData);
 
 		
-		$pricingContextContainer->addEntity($booking);
+		$pricingContextContainer->addEntity($entity);
 	
 		return $this->executePriceContextContainer($pricingContextContainer);
 	}
@@ -39,13 +39,22 @@ class PricingManager {
         $priceConfiguration = new PriceConfiguration();
         $priceConfiguration->setName('default asset pricing for customers');
 
+        /** The get entity values is normally used for retrieving the net value of a product, service,...
+
         $priceConditionBaseNetValue = new PriceCondition();
         $priceConditionBaseNetValue->setName('get_entity_values');
-
+        $priceConditionBaseNetValue->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\GetEntityValues');
         //Retrieve entity field 'net_price' and put it in pricing context container node as value 'net_price'
         $priceConditionBaseNetValue->setParameters(serialize(
             array('entity.net_value' => 'container.net_value')));
-        $priceConditionBaseNetValue->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\GetEntityValues');
+        */
+        $priceConditionBaseNetValue = new PriceCondition();
+        $priceConditionBaseNetValue->setName('get_net_value_for_asset');
+        $priceConditionBaseNetValue->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\GetNetValueForAsset');
+        //Retrieve entity field 'net_price' and put it in pricing context container node as value 'net_price'
+        $priceConditionBaseNetValue->setParameters(serialize(
+                    array('target' => 'net_value')));
+
 
         //Determine promotional prices for specific periods and override the container value
         $priceConditionNetPromotionValue = new PriceCondition();
@@ -77,11 +86,8 @@ class PricingManager {
         $priceConditionTotalExcl->setName('sum_total_excl_vat');
         $priceConditionTotalExcl->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\AddSum');
         $priceConditionTotalExcl->setParameters(serialize(
-            array('source' =>
-                    array('net_value' => '+',
-                          'discount' => '-',
-                          'admin_fee' => '+'),
-                   'target' => 'total_excl_vat')));
+            array('source' => 'net_value - discount + admin_fee',
+                  'target' => 'total_excl_vat')));
 
         $priceConditionTotalVat = new PriceCondition();
         $priceConditionTotalExcl->setName('add_vat');
@@ -94,11 +100,8 @@ class PricingManager {
         $priceConditionTotal->setName('sum_total');
         $priceConditionTotal->setClass('Application\AssetBookingBundle\Pricing\PricingCondition\AddSum');
         $priceConditionTotal->setParameters(serialize(
-            array('source' =>
-                    array('total_excl_vat' => '+',
-                          'total_vat' => '+'),
-
-                   'target' => 'total_incl_vat')));
+            array('source' => 'total_excl_vat + total_vat',
+                  'target' => 'total_incl_vat')));
 
         $priceConfiguration->addPriceCondition($priceConditionBaseNetValue);
         $priceConfiguration->addPriceCondition($priceConditionNetPromotionValue);

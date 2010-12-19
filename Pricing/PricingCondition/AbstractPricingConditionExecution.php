@@ -21,6 +21,9 @@ namespace Application\AssetBookingBundle\Pricing\PricingCondition;
 
 	abstract public function execute();
 
+    protected function get($serviceId){
+        return $this->serviceContainer->get($serviceId);
+    }
      
     protected function getParameter($name){
         if(array_key_exists($name, $this->priceConditionParameters)){

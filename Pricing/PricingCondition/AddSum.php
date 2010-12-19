@@ -10,16 +10,24 @@ use Application\AssetBookingBundle\Pricing\PricingCondition\AbstractPricingCondi
 
         $total = 0;
 
+        $evaluation = $this->getParameter('source');
+        $variables = str_word_count($evaluation, 1, '_');
+
         
-        foreach($this->getParameter('source') as $sourceField => $operator){
+        foreach($variables as $variable){
 
-            $value = $this->pricingContextContainer->get($sourceField);
-            switch($operator){
-                case '+': $total += $value; break;
-                case '-': $total -= $value; break;
+            if($variable != '-'){
 
+                $value = $this->pricingContextContainer->get($variable);
+                if(!$value){
+                    $value = 0;
+                }
+                $evaluation = str_replace($variable, $value, $evaluation);
             }
+
         }
+        eval('$total=' .  $evaluation . ';');
+
         $this->pricingContextContainer->set(
                         $this->getParameter('target'),
                         $total);
@@ -28,3 +36,4 @@ use Application\AssetBookingBundle\Pricing\PricingCondition\AbstractPricingCondi
    }
 
 }
+
