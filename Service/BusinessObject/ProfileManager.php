@@ -57,21 +57,21 @@ class ProfileManager {
 
     }
 
-    public function saveBusinessObject($entity){
+
+    public function save($entity){
 
         $em = $this->container->get('doctrine.orm.entity_manager');
         $statusProfileManager = $this->container->get('erp.core.customization.business_object.status_profile_manager');
 
-
-
         //Find the business object profile for given name
-        $businessObjectProfile = $entity->getBusinessObjectProfile();
+        $businessObjectProfile = $this->getBusinessObjectProfileForEntity($entity);
 
         //The business object profile knows if an id generator exists
         if($businessObjectProfile){
 
             if($idGeneratorProfile = $businessObjectProfile->getIdGeneratorProfile()){
 
+                //Create the id generator
                 $idGeneratorClassName = $idGeneratorProfile->getClass();
                 $idGenerator = new $idGeneratorClassName();
 
@@ -79,6 +79,7 @@ class ProfileManager {
                 $idGenerator->lock($businessObjectProfile->getEntityType());
 
                 //Generate the id
+
                 $entity->setBookingReference($idGenerator->generate());
                 $em->persist($entity);
                 $idGenerator->unlock($businessObjectProfile->getEntityType());
@@ -88,4 +89,11 @@ class ProfileManager {
 
         }
     }
+
+    protected function getBusinessObjectProfileForEntity($entity){
+        //For now we get it from the entity but that's not ok , it should be more loosly coupled
+        return $entity->getBusinessObjectProfile();
+    }
+
+
 }

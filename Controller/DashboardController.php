@@ -19,28 +19,36 @@ class DashboardController extends Controller
 		
 		if($booking){
 
-           //Get asset
+           //Get our mighty villa
 
             $villaAsset = $em->getRepository('Application\AssetBookingBundle\Entity\Asset')
                    ->findOneBy(array('name' => 'villa'));
 
+            //We are going to book it for the weekend
             $weekendPeriodType = $em->getRepository('Application\AssetBookingBundle\Entity\AssetPeriodType')
                             ->findOneBy(array('name' => 'weekend'));
 
+            $checkInDate = \DateTime::createFromFormat('Y-m-d', '2011-01-07');
+
+            
+            //Create a new booking item and attach the asset to it
             $bookingItem = new BookingItem();
             $bookingItem->setAsset($villaAsset);
+            $bookingItem->setCheckInDate($checkInDate);
             $booking->addItem($bookingItem);
-            
 
+            //Determine all prices (net_value, discount, total_excl_vat, total_incl_vat )
 			$prices = $boPricingService->getPricesForEntity(
                         $villaAsset,
-                        array('discount_rate' => 10,
-                              'vat_rate' => 21,
-                              'asset_booking_period_type' => $weekendPeriodType->getId(),
-                              'asset_booking_period_from' => '07.01.2011'));
+                        array('discount_rate'             => 10,
+                              'vat_rate'                  => 21,
+                              'asset_booking_period_type' => $weekendPeriodType,
+                              'asset_booking_check_in_date' => $checkInDate));
+
+            //Todo: store prices
         	var_dump($prices);
             
-            //$businessObjectManagementService->saveBusinessObject($booking);
+            $boProfileService->save($booking);
             //$em->flush();
 
         }else{

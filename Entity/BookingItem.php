@@ -43,6 +43,11 @@ class BookingItem
     private $stateOfPropertyRemarks;
 
     /**
+     * @var datetime $checkInDate
+     */
+    private $checkInDate;
+
+    /**
      * @var datetime $createdAt
      */
     private $createdAt;
@@ -200,6 +205,26 @@ class BookingItem
     public function getStateOfPropertyRemarks()
     {
         return $this->stateOfPropertyRemarks;
+    }
+
+    /**
+     * Set checkInDate
+     *
+     * @param datetime $checkInDate
+     */
+    public function setCheckInDate($checkInDate)
+    {
+        $this->checkInDate = $checkInDate;
+    }
+
+    /**
+     * Get checkInDate
+     *
+     * @return datetime $checkInDate
+     */
+    public function getCheckInDate()
+    {
+        return $this->checkInDate;
     }
 
     /**

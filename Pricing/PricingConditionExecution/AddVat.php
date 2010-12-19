@@ -1,8 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Pricing\PricingCondition;
+namespace Application\AssetBookingBundle\Pricing\PricingConditionExecution;
 
-use Application\AssetBookingBundle\Pricing\PricingCondition\AbstractPricingConditionExecution;
+
+use Application\AssetBookingBundle\Pricing\PricingConditionExecution\AbstractPricingConditionExecution;
 
  class AddVat extends AbstractPricingConditionExecution {
 

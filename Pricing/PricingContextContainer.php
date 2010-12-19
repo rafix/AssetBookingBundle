@@ -24,9 +24,13 @@ class PricingContextContainer {
         $this->entities = $entities;
     }
     
-    public function get($key){
+    public function get($key, $default = null){
         if(array_key_exists($key, $this->data)){
             return $this->data[$key];
+        }elseif($default){
+            return $default;
+        }else{
+            return null;
         }
     }
 
