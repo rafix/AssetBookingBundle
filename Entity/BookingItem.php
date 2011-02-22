@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\BookingItem
+ * Xerias\AssetBookingBundle\Entity\BookingItem
  */
 class BookingItem
 {
@@ -63,7 +63,7 @@ class BookingItem
     private $id;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\Asset
+     * @var Xerias\AssetBookingBundle\Entity\Asset
      */
     private $asset;
 
@@ -280,9 +280,9 @@ class BookingItem
     /**
      * Set asset
      *
-     * @param Application\AssetBookingBundle\Entity\Asset $asset
+     * @param Xerias\AssetBookingBundle\Entity\Asset $asset
      */
-    public function setAsset(\Application\AssetBookingBundle\Entity\Asset $asset)
+    public function setAsset(\Xerias\AssetBookingBundle\Entity\Asset $asset)
     {
         $this->asset = $asset;
     }
@@ -290,7 +290,7 @@ class BookingItem
     /**
      * Get asset
      *
-     * @return Application\AssetBookingBundle\Entity\Asset $asset
+     * @return Xerias\AssetBookingBundle\Entity\Asset $asset
      */
     public function getAsset()
     {

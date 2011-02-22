@@ -4,7 +4,7 @@
       xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Application\AssetBookingBundle\Entity\PriceConfiguration" table="price_configuration">
+    <entity name="Xerias\AssetBookingBundle\Entity\PriceConfiguration" table="price_configuration">
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>

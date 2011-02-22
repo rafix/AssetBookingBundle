@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\AssetPeriodTypePrice
+ * Xerias\AssetBookingBundle\Entity\AssetPeriodTypePrice
  */
 class AssetPeriodTypePrice
 {
@@ -28,12 +28,12 @@ class AssetPeriodTypePrice
     private $id;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\Asset
+     * @var Xerias\AssetBookingBundle\Entity\Asset
      */
     private $asset;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\AssetPeriodType
+     * @var Xerias\AssetBookingBundle\Entity\AssetPeriodType
      */
     private $assetPeriodType;
 
@@ -110,9 +110,9 @@ class AssetPeriodTypePrice
     /**
      * Set asset
      *
-     * @param Application\AssetBookingBundle\Entity\Asset $asset
+     * @param Xerias\AssetBookingBundle\Entity\Asset $asset
      */
-    public function setAsset(\Application\AssetBookingBundle\Entity\Asset $asset)
+    public function setAsset(\Xerias\AssetBookingBundle\Entity\Asset $asset)
     {
         $this->asset = $asset;
     }
@@ -120,7 +120,7 @@ class AssetPeriodTypePrice
     /**
      * Get asset
      *
-     * @return Application\AssetBookingBundle\Entity\Asset $asset
+     * @return Xerias\AssetBookingBundle\Entity\Asset $asset
      */
     public function getAsset()
     {
@@ -130,9 +130,9 @@ class AssetPeriodTypePrice
     /**
      * Set assetPeriodType
      *
-     * @param Application\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodType
+     * @param Xerias\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodType
      */
-    public function setAssetPeriodType(\Application\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodType)
+    public function setAssetPeriodType(\Xerias\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodType)
     {
         $this->assetPeriodType = $assetPeriodType;
     }
@@ -140,7 +140,7 @@ class AssetPeriodTypePrice
     /**
      * Get assetPeriodType
      *
-     * @return Application\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodType
+     * @return Xerias\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodType
      */
     public function getAssetPeriodType()
     {

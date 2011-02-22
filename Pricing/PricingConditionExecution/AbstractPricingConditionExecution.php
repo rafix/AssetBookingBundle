@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\AssetBookingBundle\Pricing\PricingConditionExecution;
+namespace Xerias\AssetBookingBundle\Pricing\PricingConditionExecution;
 
  abstract class AbstractPricingConditionExecution {
 

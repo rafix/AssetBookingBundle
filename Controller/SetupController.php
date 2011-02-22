@@ -1,17 +1,17 @@
 <?php
 
-namespace Application\AssetBookingBundle\Controller;
+namespace Xerias\AssetBookingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Application\AssetBookingBundle\Entity\Asset;
-use Application\AssetBookingBundle\Entity\AssetPeriodType;
-use Application\AssetBookingBundle\Entity\AssetPeriodTypePrice;
-use Application\AssetBookingBundle\Entity\BusinessObjectProfile;
-use Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile;
-use Application\AssetBookingBundle\Entity\StatusProfile;
-use Application\AssetBookingBundle\Entity\StatusProfileItem;
-use Application\AssetBookingBundle\Entity\Status;
+use Xerias\AssetBookingBundle\Entity\Asset;
+use Xerias\AssetBookingBundle\Entity\AssetPeriodType;
+use Xerias\AssetBookingBundle\Entity\AssetPeriodTypePrice;
+use Xerias\AssetBookingBundle\Entity\BusinessObjectProfile;
+use Xerias\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile;
+use Xerias\AssetBookingBundle\Entity\StatusProfile;
+use Xerias\AssetBookingBundle\Entity\StatusProfileItem;
+use Xerias\AssetBookingBundle\Entity\Status;
 
 
 
@@ -24,7 +24,7 @@ class SetupController extends Controller
 	
 	    $this->loadFixtures();	
 	
-        return $this->render('AssetBookingBundle:Setup:index.twig', array('name' => 'z'));
+        return $this->render('AssetBookingBundle:Setup:index.html.twig', array('name' => 'z'));
 
     }
 
@@ -58,20 +58,20 @@ class SetupController extends Controller
         //Objective is to create sequences 'WEB-2010-0001', 'WEB-2010-0002', ...
         $idGeneratorProfile = new BusinessObjectIdGeneratorProfile();
         $idGeneratorProfile->setName('booking_customer_id_generator');
-        $idGeneratorProfile->setClass("\Application\AssetBookingBundle\IdGenerator\SimpleIdGenerator");
+        $idGeneratorProfile->setClass("\Xerias\AssetBookingBundle\IdGenerator\SimpleIdGenerator");
         $em->persist($idGeneratorProfile);
 		
         //Create the business object profile containing all business object meta data
         $businessObjectProfileCustomer = new BusinessObjectProfile();
         $businessObjectProfileCustomer->setName('booking_by_customer');
-        $businessObjectProfileCustomer->setEntityType("\Application\AssetBookingBundle\Entity\Booking");
+        $businessObjectProfileCustomer->setEntityType("\Xerias\AssetBookingBundle\Entity\Booking");
         $businessObjectProfileCustomer->setStatusProfile($statusProfileCustomer);
         $businessObjectProfileCustomer->setIdGeneratorProfile($idGeneratorProfile);
         $em->persist($businessObjectProfileCustomer);
 
         $businessObjectProfileAgency = new BusinessObjectProfile();
         $businessObjectProfileAgency->setName('booking_by_agency');
-        $businessObjectProfileAgency->setEntityType("\Application\AssetBookingBundle\Entity\Booking");
+        $businessObjectProfileAgency->setEntityType("\Xerias\AssetBookingBundle\Entity\Booking");
         $businessObjectProfileAgency->setStatusProfile($statusProfileAgency);
 
         $em->persist($businessObjectProfileAgency);
@@ -210,9 +210,10 @@ class SetupController extends Controller
        $em->persist($villaAsset);
 
        $fromDateTime = \DateTime::createFromFormat('Y-m-d H:i:s', '2011-01-01 00:00:00');
-       $toDateTime = \DateTime::createFromFormat('Y-m-d H:i:s','2099-01-01 00:00:00');
+       $toDateTime = \DateTime::createFromFormat('Y-m-d H:i:s','2038-01-01 00:00:00');
 
        //Default prices
+
        $villaWeekendPrice = new AssetPeriodTypePrice();
        $villaWeekendPrice->setAsset($villaAsset);
        $villaWeekendPrice->setAssetPeriodType($weekend);
@@ -220,10 +221,15 @@ class SetupController extends Controller
        $villaWeekendPrice->setPriceFrom($fromDateTime);
        $villaWeekendPrice->setPriceTo($toDateTime);
 
+       $villaFullWeekPrice = new AssetPeriodTypePrice();
+       $villaFullWeekPrice->setAsset($villaAsset);
+       $villaFullWeekPrice->setAssetPeriodType($fullweek);
+       $villaFullWeekPrice->setPrice(3000);
+       $villaFullWeekPrice->setPriceFrom($fromDateTime);
+       $villaFullWeekPrice->setPriceTo($toDateTime);
+
        $em->persist($villaWeekendPrice);
-
-
-
+       $em->persist($villaFullWeekPrice);
 
        $em->flush();
 

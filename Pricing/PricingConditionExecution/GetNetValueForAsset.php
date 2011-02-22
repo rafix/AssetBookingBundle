@@ -1,10 +1,10 @@
 <?php
 
-namespace Application\AssetBookingBundle\Pricing\PricingConditionExecution;
+namespace Xerias\AssetBookingBundle\Pricing\PricingConditionExecution;
 
 
-use Application\AssetBookingBundle\Pricing\PricingConditionExecution\AbstractPricingConditionExecution;
-use Application\AssetBookingBundle\Pricing\PricingConditionExecution\PricingConditionExecutionException;
+use Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\AbstractPricingConditionExecution;
+use Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\PricingConditionExecutionException;
 
  class GetNetValueForAsset extends AbstractPricingConditionExecution {
 
@@ -42,7 +42,7 @@ use Application\AssetBookingBundle\Pricing\PricingConditionExecution\PricingCond
 
            $qb = $em->createQueryBuilder()
               ->select('aptp')
-              ->from('Application\AssetBookingBundle\Entity\AssetPeriodTypePrice', 'aptp')
+              ->from('Xerias\AssetBookingBundle\Entity\AssetPeriodTypePrice', 'aptp')
               ->innerJoin('aptp.assetPeriodType','apt')
               ->where('apt.id = ?1 and aptp.asset = ?2 and aptp.priceFrom <= ?3 and aptp.priceTo > ?3');
 

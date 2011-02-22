@@ -9,9 +9,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class AssetBookingExtension extends Extension
 {
-    public function configLoad(array $config, ContainerBuilder $container)
-    {
-        $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
+    public function load(array $configs, ContainerBuilder $container)
+    {    $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
         $loader->load('services.xml');
       
      

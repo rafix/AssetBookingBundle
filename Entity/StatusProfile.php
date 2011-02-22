@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\StatusProfile
+ * Xerias\AssetBookingBundle\Entity\StatusProfile
  */
 class StatusProfile
 {
@@ -33,7 +33,7 @@ class StatusProfile
     private $id;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\StatusProfileItem
+     * @var Xerias\AssetBookingBundle\Entity\StatusProfileItem
      */
     private $items;
 
@@ -130,9 +130,9 @@ class StatusProfile
     /**
      * Add items
      *
-     * @param Application\AssetBookingBundle\Entity\StatusProfileItem $items
+     * @param Xerias\AssetBookingBundle\Entity\StatusProfileItem $items
      */
-    public function addItem(\Application\AssetBookingBundle\Entity\StatusProfileItem $items)
+    public function addItem(\Xerias\AssetBookingBundle\Entity\StatusProfileItem $items)
     {
         $this->items[] = $items;
     }

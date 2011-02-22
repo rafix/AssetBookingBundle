@@ -1,9 +1,9 @@
 <?php
-namespace Application\AssetBookingBundle\Service\BusinessObject;
+namespace Xerias\AssetBookingBundle\Service\BusinessObject;
 
-use Application\AssetBookingBundle\Pricing\PricingContextContainer;
-use Application\AssetBOokingBundle\Entity\PriceCondition;
-use Application\AssetBOokingBundle\Entity\PriceConfiguration;
+use  Xerias\AssetBookingBundle\Pricing\PricingContextContainer;
+use  Xerias\AssetBOokingBundle\Entity\PriceCondition;
+use  Xerias\AssetBOokingBundle\Entity\PriceConfiguration;
 
 
 class PricingManager {
@@ -43,14 +43,14 @@ class PricingManager {
 
         $priceConditionBaseNetValue = new PriceCondition();
         $priceConditionBaseNetValue->setName('get_entity_values');
-        $priceConditionBaseNetValue->setClass('Application\AssetBookingBundle\Pricing\PricingConditionExecution\GetEntityValues');
+        $priceConditionBaseNetValue->setClass('Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\GetEntityValues');
         //Retrieve entity field 'net_price' and put it in pricing context container node as value 'net_price'
         $priceConditionBaseNetValue->setParameters(serialize(
             array('entity.net_value' => 'container.net_value')));
         */
         $priceConditionBaseNetValue = new PriceCondition();
         $priceConditionBaseNetValue->setName('get_net_value_for_asset');
-        $priceConditionBaseNetValue->setClass('Application\AssetBookingBundle\Pricing\PricingConditionExecution\GetNetValueForAsset');
+        $priceConditionBaseNetValue->setClass('Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\GetNetValueForAsset');
         //Retrieve entity field 'net_price' and put it in pricing context container node as value 'net_price'
         $priceConditionBaseNetValue->setParameters(serialize(
                     array('target' => 'net_value')));
@@ -59,14 +59,14 @@ class PricingManager {
         //Determine promotional prices for specific periods and override the container value
         $priceConditionNetPromotionValue = new PriceCondition();
         $priceConditionNetPromotionValue->setName('get_promotion_values');
-        $priceConditionNetPromotionValue->setClass('Application\AssetBookingBundle\Pricing\PricingConditionExecution\GetPromotionValues');
+        $priceConditionNetPromotionValue->setClass('Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\GetPromotionValues');
         $priceConditionNetPromotionValue->setParameters(serialize(
             array('source' => 'entity.net_value',
                   'target' => 'net_value')));
 
         $priceConditionDiscount = new PriceCondition();
         $priceConditionDiscount->setName('add_discount');
-        $priceConditionDiscount->setClass('Application\AssetBookingBundle\Pricing\PricingConditionExecution\HeaderDiscount');
+        $priceConditionDiscount->setClass('Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\HeaderDiscount');
         //Retrieve previously stored container.net_value field and put calculations into target container field container.discount
         $priceConditionDiscount->setParameters(serialize(
             array('source'             => 'net_value',
@@ -75,7 +75,7 @@ class PricingManager {
 
         $priceConditionAddFee = new PriceCondition();
         $priceConditionAddFee->setName('add_fixed_value');
-        $priceConditionAddFee->setClass('Application\AssetBookingBundle\Pricing\PricingConditionExecution\AddFixedValue');
+        $priceConditionAddFee->setClass('Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\AddFixedValue');
         $priceConditionAddFee->setParameters(serialize(
             array('amount' => 5,
                   'currency' => 'euro',
@@ -84,21 +84,21 @@ class PricingManager {
 
         $priceConditionTotalExcl = new PriceCondition();
         $priceConditionTotalExcl->setName('sum_total_excl_vat');
-        $priceConditionTotalExcl->setClass('Application\AssetBookingBundle\Pricing\PricingConditionExecution\AddSum');
+        $priceConditionTotalExcl->setClass('Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\AddSum');
         $priceConditionTotalExcl->setParameters(serialize(
             array('source' => 'net_value - discount + admin_fee',
                   'target' => 'total_excl_vat')));
 
         $priceConditionTotalVat = new PriceCondition();
         $priceConditionTotalExcl->setName('add_vat');
-        $priceConditionTotalVat->setClass('Application\AssetBookingBundle\Pricing\PricingConditionExecution\AddVat');
+        $priceConditionTotalVat->setClass('Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\AddVat');
         $priceConditionTotalVat->setParameters(serialize(
               array('source'    => 'total_excl_vat',
                     'target'    => 'total_vat')));
 
         $priceConditionTotal = new PriceCondition();
         $priceConditionTotal->setName('sum_total');
-        $priceConditionTotal->setClass('Application\AssetBookingBundle\Pricing\PricingConditionExecution\AddSum');
+        $priceConditionTotal->setClass('Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\AddSum');
         $priceConditionTotal->setParameters(serialize(
             array('source' => 'total_excl_vat + total_vat',
                   'target' => 'total_incl_vat')));

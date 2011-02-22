@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\StatusProfileItem
+ * Xerias\AssetBookingBundle\Entity\StatusProfileItem
  */
 class StatusProfileItem
 {
@@ -38,7 +38,7 @@ class StatusProfileItem
     private $id;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\Status
+     * @var Xerias\AssetBookingBundle\Entity\Status
      */
     private $status;
 
@@ -155,9 +155,9 @@ class StatusProfileItem
     /**
      * Set status
      *
-     * @param Application\AssetBookingBundle\Entity\Status $status
+     * @param Xerias\AssetBookingBundle\Entity\Status $status
      */
-    public function setStatus(\Application\AssetBookingBundle\Entity\Status $status)
+    public function setStatus(\Xerias\AssetBookingBundle\Entity\Status $status)
     {
         $this->status = $status;
     }
@@ -165,7 +165,7 @@ class StatusProfileItem
     /**
      * Get status
      *
-     * @return Application\AssetBookingBundle\Entity\Status $status
+     * @return Xerias\AssetBookingBundle\Entity\Status $status
      */
     public function getStatus()
     {

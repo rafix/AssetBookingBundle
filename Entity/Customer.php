@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\Customer
+ * Xerias\AssetBookingBundle\Entity\Customer
  */
 class Customer
 {

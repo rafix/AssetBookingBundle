@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile
+ * Xerias\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile
  */
 class BusinessObjectIdGeneratorProfile
 {

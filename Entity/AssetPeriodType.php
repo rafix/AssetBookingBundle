@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\AssetPeriodType
+ * Xerias\AssetBookingBundle\Entity\AssetPeriodType
  */
 class AssetPeriodType
 {

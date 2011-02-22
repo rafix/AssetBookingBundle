@@ -3,7 +3,7 @@
       xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Application\AssetBookingBundle\Entity\StatusProfileItem" table="status_profile_item">
+    <entity name="Xerias\AssetBookingBundle\Entity\StatusProfileItem" table="status_profile_item">
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>

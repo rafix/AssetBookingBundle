@@ -1,6 +1,15 @@
+booknow:
+    pattern:  /book
+    defaults: { _controller: AssetBookingBundle:BookNow:index }
+pricesByWeek:
+    pattern:  /pricesByWeek
+    defaults: { _controller: AssetBookingBundle:BookNow:pricesByWeek }
 dashboard:
     pattern:  /dashboard
     defaults: { _controller: AssetBookingBundle:Dashboard:index }
 setup:
     pattern:  /setup
     defaults: { _controller: AssetBookingBundle:Setup:index }
+prijzenPerWeek:
+    pattern:  /nl/prijzenPerWeek
+    defaults: { _controller: AssetBookingBundle:BookNow:pricesByWeek, _locale: nl }

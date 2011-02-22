@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\Booking
+ * Xerias\AssetBookingBundle\Entity\Booking
  */
 class Booking
 {
@@ -33,22 +33,22 @@ class Booking
     private $id;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\Status
+     * @var Xerias\AssetBookingBundle\Entity\Status
      */
     private $status;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\BookingItem
+     * @var Xerias\AssetBookingBundle\Entity\BookingItem
      */
     private $items;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\BusinessObjectProfile
+     * @var Xerias\AssetBookingBundle\Entity\BusinessObjectProfile
      */
     private $businessObjectProfile;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\Customer
+     * @var Xerias\AssetBookingBundle\Entity\Customer
      */
     private $customer;
 
@@ -145,9 +145,9 @@ class Booking
     /**
      * Set status
      *
-     * @param Application\AssetBookingBundle\Entity\Status $status
+     * @param Xerias\AssetBookingBundle\Entity\Status $status
      */
-    public function setStatus(\Application\AssetBookingBundle\Entity\Status $status)
+    public function setStatus(\Xerias\AssetBookingBundle\Entity\Status $status)
     {
         $this->status = $status;
     }
@@ -155,7 +155,7 @@ class Booking
     /**
      * Get status
      *
-     * @return Application\AssetBookingBundle\Entity\Status $status
+     * @return Xerias\AssetBookingBundle\Entity\Status $status
      */
     public function getStatus()
     {
@@ -165,9 +165,9 @@ class Booking
     /**
      * Add items
      *
-     * @param Application\AssetBookingBundle\Entity\BookingItem $items
+     * @param Xerias\AssetBookingBundle\Entity\BookingItem $items
      */
-    public function addItem(\Application\AssetBookingBundle\Entity\BookingItem $items)
+    public function addItem(\Xerias\AssetBookingBundle\Entity\BookingItem $items)
     {
         $this->items[] = $items;
     }
@@ -185,9 +185,9 @@ class Booking
     /**
      * Set businessObjectProfile
      *
-     * @param Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
+     * @param Xerias\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
      */
-    public function setBusinessObjectProfile(\Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile)
+    public function setBusinessObjectProfile(\Xerias\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile)
     {
         $this->businessObjectProfile = $businessObjectProfile;
     }
@@ -195,7 +195,7 @@ class Booking
     /**
      * Get businessObjectProfile
      *
-     * @return Application\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
+     * @return Xerias\AssetBookingBundle\Entity\BusinessObjectProfile $businessObjectProfile
      */
     public function getBusinessObjectProfile()
     {
@@ -205,9 +205,9 @@ class Booking
     /**
      * Set customer
      *
-     * @param Application\AssetBookingBundle\Entity\Customer $customer
+     * @param Xerias\AssetBookingBundle\Entity\Customer $customer
      */
-    public function setCustomer(\Application\AssetBookingBundle\Entity\Customer $customer)
+    public function setCustomer(\Xerias\AssetBookingBundle\Entity\Customer $customer)
     {
         $this->customer = $customer;
     }
@@ -215,7 +215,7 @@ class Booking
     /**
      * Get customer
      *
-     * @return Application\AssetBookingBundle\Entity\Customer $customer
+     * @return Xerias\AssetBookingBundle\Entity\Customer $customer
      */
     public function getCustomer()
     {

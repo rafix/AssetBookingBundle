@@ -1,5 +1,5 @@
 <?php
-namespace Application\AssetBookingBundle\Service\BusinessObject;
+namespace  Xerias\AssetBookingBundle\Service\BusinessObject;
 
 
 class StatusProfileManager {

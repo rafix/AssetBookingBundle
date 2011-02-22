@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\PriceConfiguration
+ * Xerias\AssetBookingBundle\Entity\PriceConfiguration
  */
 class PriceConfiguration
 {
@@ -28,7 +28,7 @@ class PriceConfiguration
     private $id;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\PriceCondition
+     * @var Xerias\AssetBookingBundle\Entity\PriceCondition
      */
     private $priceConditions;
 
@@ -105,9 +105,9 @@ class PriceConfiguration
     /**
      * Add priceConditions
      *
-     * @param Application\AssetBookingBundle\Entity\PriceCondition $priceConditions
+     * @param Xerias\AssetBookingBundle\Entity\PriceCondition $priceConditions
      */
-    public function addPriceCondition(\Application\AssetBookingBundle\Entity\PriceCondition $priceConditions)
+    public function addPriceCondition(\Xerias\AssetBookingBundle\Entity\PriceCondition $priceConditions)
     {
         $this->priceConditions[] = $priceConditions;
     }

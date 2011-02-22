@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Pricing\PricingConditionExecution;
+namespace Xerias\AssetBookingBundle\Pricing\PricingConditionExecution;
 
 
-use Application\AssetBookingBundle\Pricing\PricingConditionExecution\AbstractPricingConditionExecution;
+use Xerias\AssetBookingBundle\Pricing\PricingConditionExecution\AbstractPricingConditionExecution;
 
  class HeaderDiscount extends AbstractPricingConditionExecution {
 

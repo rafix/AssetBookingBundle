@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\BusinessObjectProfile
+ * Xerias\AssetBookingBundle\Entity\BusinessObjectProfile
  */
 class BusinessObjectProfile
 {
@@ -38,12 +38,12 @@ class BusinessObjectProfile
     private $id;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\StatusProfile
+     * @var Xerias\AssetBookingBundle\Entity\StatusProfile
      */
     private $statusProfile;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile
+     * @var Xerias\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile
      */
     private $idGeneratorProfile;
 
@@ -160,9 +160,9 @@ class BusinessObjectProfile
     /**
      * Set statusProfile
      *
-     * @param Application\AssetBookingBundle\Entity\StatusProfile $statusProfile
+     * @param Xerias\AssetBookingBundle\Entity\StatusProfile $statusProfile
      */
-    public function setStatusProfile(\Application\AssetBookingBundle\Entity\StatusProfile $statusProfile)
+    public function setStatusProfile(\Xerias\AssetBookingBundle\Entity\StatusProfile $statusProfile)
     {
         $this->statusProfile = $statusProfile;
     }
@@ -170,7 +170,7 @@ class BusinessObjectProfile
     /**
      * Get statusProfile
      *
-     * @return Application\AssetBookingBundle\Entity\StatusProfile $statusProfile
+     * @return Xerias\AssetBookingBundle\Entity\StatusProfile $statusProfile
      */
     public function getStatusProfile()
     {
@@ -180,9 +180,9 @@ class BusinessObjectProfile
     /**
      * Set idGeneratorProfile
      *
-     * @param Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile $idGeneratorProfile
+     * @param Xerias\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile $idGeneratorProfile
      */
-    public function setIdGeneratorProfile(\Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile $idGeneratorProfile)
+    public function setIdGeneratorProfile(\Xerias\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile $idGeneratorProfile)
     {
         $this->idGeneratorProfile = $idGeneratorProfile;
     }
@@ -190,7 +190,7 @@ class BusinessObjectProfile
     /**
      * Get idGeneratorProfile
      *
-     * @return Application\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile $idGeneratorProfile
+     * @return Xerias\AssetBookingBundle\Entity\BusinessObjectIdGeneratorProfile $idGeneratorProfile
      */
     public function getIdGeneratorProfile()
     {

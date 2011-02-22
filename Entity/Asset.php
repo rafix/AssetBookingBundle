@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\Asset
+ * Xerias\AssetBookingBundle\Entity\Asset
  */
 class Asset
 {
@@ -43,7 +43,7 @@ class Asset
     private $id;
 
     /**
-     * @var Application\AssetBookingBundle\Entity\AssetPeriodType
+     * @var Xerias\AssetBookingBundle\Entity\AssetPeriodType
      */
     private $assetPeriodTypes;
 
@@ -180,9 +180,9 @@ class Asset
     /**
      * Add assetPeriodTypes
      *
-     * @param Application\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodTypes
+     * @param Xerias\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodTypes
      */
-    public function addAssetPeriodType(\Application\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodTypes)
+    public function addAssetPeriodType(\Xerias\AssetBookingBundle\Entity\AssetPeriodType $assetPeriodTypes)
     {
         $this->assetPeriodTypes[] = $assetPeriodTypes;
     }

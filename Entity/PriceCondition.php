@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\AssetBookingBundle\Entity;
+namespace Xerias\AssetBookingBundle\Entity;
 
 /**
- * Application\AssetBookingBundle\Entity\PriceCondition
+ * Xerias\AssetBookingBundle\Entity\PriceCondition
  */
 class PriceCondition
 {
